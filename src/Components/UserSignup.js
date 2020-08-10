@@ -29,11 +29,7 @@ export default class UserSignup extends Component {
                     Register:"true",
                     id:deviceid
                 })
-                
-                // this.props.history.push("/UserLogin");
-                // this.props.history.push('/sign-in')
-
-                console.log(password)
+                this.props.history.push("/sign-in");
             }
         }
        
@@ -45,11 +41,13 @@ export default class UserSignup extends Component {
     renderForm(){
         return(
         <form onSubmit={this.handleSubmit}>
+            <div className="auth-wrapper">
+            <div className="auth-inner">
                 <h3>Registration</h3>
 
                 <div className="form-group">
                     <label>Device ID</label>
-                    <input type="text" className="form-control" placeholder="Device ID" value={this.deviceid} onChange={e=>this.setState({deviceid:e.target.value})} />
+                    <input type="text" className="form-control" value={"vv-0213"} disabled />
                 </div>
 
                 <div className="form-group">
@@ -76,6 +74,8 @@ export default class UserSignup extends Component {
                 <p className="forgot-password text-right">
                     Already registered <a href="/sign-in">Sign In?</a>
                 </p>
+                </div>
+                </div>
             </form>
         )
     }

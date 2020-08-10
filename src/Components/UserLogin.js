@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
 
-export default class UserLogin extends Component {
+class UserLogin extends Component {
     constructor(props){
         super(props)
         this.state={
-            confirmPassword:""
+            confirmPassword:"",
+            id:""
         }
     
         this.handleLogin=this.handleLogin.bind(this)
@@ -14,27 +16,31 @@ export default class UserLogin extends Component {
         // console.log(this.props.data)
     }
 
-    handleLogin(){
+    handleLogin(e){
+        e.preventDefault();
         const {confirmPassword} = this.state
-        const {password} = this.props
-        if(confirmPassword !== password ) {
-            alert("Enter a valid password")
+        
+        if(confirmPassword) {
+            this.props.history.push("/dashboard");
+            
         }
-        else {
+        
             // this.props.history.push("/dashboard")
-            alert("Done")
+            // alert("Done")
             // window.location="/dashboard"
-        }
+        
     }
 
     render() {
         return (
             <form onSubmit={this.handleLogin} >
+                <div className="auth-wrapper">
+            <div className="auth-inner">
                 <h3>Sign In</h3>
 
                 <div className="form-group">
                     <label>DeviceID</label>
-                    <input type="text" className="form-control" value={this.props.id} disabled />
+                    <input type="text" className="form-control" placeholder="Device ID" value={this.id} onChange={e=>this.setState({id:e.target.value})} />
                 </div>
 
                 <div className="form-group">
@@ -53,8 +59,13 @@ export default class UserLogin extends Component {
                 <p className="forgot-password text-right">
                     Forgot <a href="/dashboard">password?</a> 
                 </p>
+                </div>
+                </div>
             </form>
+
             
         );
     }
 }
+
+export default UserLogin;
