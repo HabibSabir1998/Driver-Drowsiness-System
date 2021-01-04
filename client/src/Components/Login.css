@@ -1,0 +1,85 @@
+.main-head {
+  height: 150px;
+  background: #fff;
+}
+
+.sidenav {
+  height: 100%;
+  background-color: rgb(31, 141, 250);
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-bottom-right-radius: 500px;
+}
+
+.main {
+  padding: 0px 10px;
+}
+
+.form-group {
+  position: relative;
+}
+
+i {
+  position: absolute;
+  left: 13px;
+  top: 11px;
+  font-size: 18px;
+  color: rgb(85, 85, 85);
+}
+
+.form-control {
+  padding-left: 40px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .login-form {
+    margin-top: 10%;
+  }
+
+  .register-form {
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    margin-left: 40%;
+  }
+
+  .sidenav {
+    width: 40%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .login-form {
+    margin-top: 80%;
+  }
+
+  .register-form {
+    margin-top: 60%;
+  }
+}
+
+.login-main-text {
+  margin-top: 20%;
+  padding: 60px;
+  color: #fff;
+}
+
+.login-main-text h2 {
+  font-weight: 300;
+}
+
+.btn-blue {
+  margin: 10px;
+  background-color: rgb(31, 141, 250) !important;
+  color: #fff;
+}
