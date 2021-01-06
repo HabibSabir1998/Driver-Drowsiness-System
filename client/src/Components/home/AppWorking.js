@@ -8,7 +8,7 @@ const AppWorking = () => {
       <br /> <br /> <br />
       <h1 className="section-heading">How the App Works?</h1>
       <p className="section-p">
-        The Most of accident occur beacause the driver feel drowsy that's why
+        The Most of accident occur because the driver feel drowsy that's why
         this system is design to overcome this problem.This system try to driver
         can focus on the road.
       </p>

@@ -83,3 +83,31 @@ i {
   background-color: rgb(31, 141, 250) !important;
   color: #fff;
 }
+
+/*error-notice*/
+
+.error-notice {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgb(233, 84, 84);
+  background-color: rgb(238, 136, 136);
+}
+
+.error-notice button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #f83838;
+  border: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .subtext {
+    max-width: 65%;
+  }
+}

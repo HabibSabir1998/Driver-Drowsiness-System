@@ -5,7 +5,10 @@ const path = require("path");
 const User = require("./models/userModel");
 const routes = require("./routes/api");
 
+require("dotenv").config();
+
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 8080;
 const mongoURL = "mongodb+srv://DAS:das123@clusterfyp.bymln.mongodb.net/DAS_DB";
 
@@ -16,6 +19,7 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   }
 );
 

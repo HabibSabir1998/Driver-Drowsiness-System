@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import register from "../img/carman.svg";
+import { useHistory } from "react-router-dom";
+import ErrorNotice from "./ErrorNotice";
+import Axios from "axios";
+import UserContext from "../Context/UserContext";
 
-function Logintwo(props) {
+function Login(props) {
   const [id, setId] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState();
 
-  const handleLogin = (e) => {
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const loginUser = {
+        email,
+        password,
+      };
+      const loginRes = await Axios.post("/login", loginUser);
 
-    if (confirmPassword) {
-      props.history.push("/dashboard");
+      setUserData({
+        token: loginRes.data.token,
+        user: loginRes.data.user,
+      });
+      localStorage.setItem("auth-token", loginRes.data.token);
+      history.push("/home");
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
     }
-
-    // this.props.history.push("/dashboard")
-    // alert("Done")
-    // window.location="/dashboard"
   };
 
   return (
@@ -33,15 +50,21 @@ function Logintwo(props) {
       <div className="main">
         <div className="col-md-6 col-sm-12 mt-sm-4">
           <div className="login-form">
-            <form onSubmit={handleLogin}>
+            {error && (
+              <ErrorNotice
+                message={error}
+                clearError={() => setError(undefined)}
+              />
+            )}
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <i className="fas fa-portrait"></i>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Device Id"
-                  value={id}
-                  onChange={(e) => setId(e.target.value)}
+                  placeholder="Device Id or email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -51,8 +74,8 @@ function Logintwo(props) {
                   type="password"
                   className="form-control"
                   placeholder="Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <button type="submit" className="btn btn-blue">
@@ -66,4 +89,4 @@ function Logintwo(props) {
   );
 }
 
-export default Logintwo;
+export default Login;
