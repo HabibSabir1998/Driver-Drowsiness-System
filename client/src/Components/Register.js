@@ -8,7 +8,7 @@ import ErrorNotice from "./ErrorNotice";
 
 function Register(props) {
   //  const [deviceid, setDeviceId] = useState("vv-0213");
-  const [displayName, setDisplayName] = useState("vv-0213");
+  const [deviceId, setDeviceId] = useState("vv-0213");
 
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -26,7 +26,7 @@ function Register(props) {
         email,
         password,
         passwordCheck,
-        displayName,
+        deviceId,
       };
       await Axios.post("/register", newUser);
       const loginRes = await Axios.post("/login", {
@@ -75,7 +75,7 @@ function Register(props) {
                     type="text"
                     className="form-control"
                     placeholder="Device Id"
-                    value={displayName}
+                    value={deviceId}
                   />
                 </div>
                 <div className="form-group">

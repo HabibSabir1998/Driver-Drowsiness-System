@@ -44,6 +44,9 @@ i {
   .register-form {
     margin-top: 10%;
   }
+  div.login-main-text > p {
+    max-width: 70%;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -104,10 +107,4 @@ i {
   color: #fff;
   background-color: #f83838;
   border: none;
-}
-
-@media only screen and (max-width: 576px) {
-  .subtext {
-    max-width: 65%;
-  }
 }

@@ -101,7 +101,6 @@
   box-shadow: 2px 3px 11px -6px;
   border-radius: 10px;
   /*border: 1px solid black;*/
-  background-color: white;
 }
 .text {
   width: 280px;
@@ -117,7 +116,7 @@
   margin-left: auto;
 }
 .subtext {
-  max-width: 240px;
+  max-width: 250px;
 }
 
 @media only screen and (max-width: 992px) {
@@ -144,7 +143,9 @@
     max-width: 80%;
     margin: auto;
     margin-top: 20px;
+    height: 280px;
   }
+
   .front img {
     height: 160px;
     min-width: 45%;
@@ -162,6 +163,7 @@
   .front,
   .back {
     max-width: 80%;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;

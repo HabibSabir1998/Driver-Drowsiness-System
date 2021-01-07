@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./card.css";
-import alert from "../img/alert.png";
+import drowsy from "../img/drowsy.png";
+import distructed from "../img/distructed.jpg";
+import mobilePhone from "../img/mobile-phone.png";
+
 import Axios from "axios";
 import moment from "moment";
-import _ from "lodash";
 
 function Card() {
   const [activity, setActivity] = useState([]);
@@ -22,69 +24,33 @@ function Card() {
             location: val.location,
             mood: val.mood,
             un_act: val.un_act,
+            alert:
+              val.un_act == "Drowsy"
+                ? drowsy
+                : val.un_act == "Distraction"
+                ? distructed
+                : mobilePhone,
             desc:
               val.un_act == "Drowsy"
-                ? "This activity is occurred because the driver was closed the eyes"
+                ? "This activity is occurred because the driver was closed the eyes."
                 : val.un_act == "Distraction"
-                ? "This activity is occurred because the driver was not focused on the road"
-                : "This activity is occurred because the driver was used the mobile phone",
+                ? "This activity is occurred because the driver was not focused on the road."
+                : "This activity is occurred because the driver was used the mobile phone.",
             date: moment(val.date_time).format("MMM"),
           };
         });
         setActivity(activity);
-        console.log("fetchedData", activity);
+        //console.log("fetchedData", activity);
+        localStorage.setItem("activity", JSON.stringify(activity));
       })
       .catch(() => {
-        alert("ERROR RETRIEVING DATA");
+        const localActivity = JSON.parse(localStorage.getItem("activity"));
+        setActivity(localActivity);
       });
   };
   useEffect(() => {
     getActivity();
   }, []);
-
-  useEffect(() => {
-    setgraphData(AllData);
-  }, [activity]);
-
-  graphData.length &&
-    localStorage.setItem("graphData", JSON.stringify(graphData));
-  let filterDrowsy = activity.filter((val) => val.un_act == "Drowsy");
-  let filterDis = activity.filter((val) => val.un_act == "Distraction");
-  let filterMob = activity.filter((val) => val.un_act == "Mobile Usage");
-
-  console.log(filterDis.length);
-  console.log(activity.length - filterDis.length - filterDrowsy.length);
-  console.log(filterDrowsy.length);
-
-  const months = [...new Set(activity.map((q) => q.date))];
-  localStorage.setItem("months", JSON.stringify(months));
-  localStorage.setItem("filterDrowsy", JSON.stringify(filterDrowsy.length));
-  localStorage.setItem("filterDis", JSON.stringify(filterDis.length));
-  localStorage.setItem("filterMob", JSON.stringify(filterMob.length));
-
-  const filter = (date, arr) => arr.filter((img) => img.date === date);
-
-  const AllData = months.map((v, i) => {
-    return {
-      Drowsy: filter(v, filterDrowsy).length,
-      Distraction: filter(v, filterDis).length,
-      MobileUsage: filter(v, filterMob).length,
-    };
-  });
-
-  console.log("graph====>", graphData);
-
-  const newData = AllData.map((val) => val.Drowsy);
-
-  //
-
-  //  console.log("drowsy=======>12", graphData);
-
-  //  const filtered = filter("Dec", activity);
-  //  console.log("filtered======>", filtered);
-
-  //  var ima = _.filter(activity, { date: "Jan" });
-  //  console.log(ima);
 
   return (
     <div className="card_outer">
@@ -93,7 +59,7 @@ function Card() {
           return (
             <div key={ind} className="cardmain">
               <div className="front">
-                <img className="img" src={alert} alt="#" />
+                <img className="img" src={val.alert} alt="#" />
                 <div className="text">
                   <h1 className="front_text">{val.un_act}</h1>
                   <p className="subtext">{val.desc}</p>

@@ -11,16 +11,16 @@ const Activity = require("../models/Activity");
 
 router.post("/register", async (req, res) => {
   try {
-    let { email, password, passwordCheck, displayName } = req.body;
+    let { email, password, passwordCheck, deviceId, phoneNumber } = req.body;
 
     //validate
 
-    if (!email || !password || !passwordCheck)
-      return res.status(400).json({ msg: "not all field have been entered" });
+    if (!email || !password || !passwordCheck || !deviceId)
+      return res.status(400).json({ msg: "Not all field have been entered" });
     if (password.length < 5)
       return res
         .status(400)
-        .json({ msg: "the password needs to be at least 5 character long" });
+        .json({ msg: "The password needs to be at least 5 character long" });
 
     if (password !== passwordCheck)
       return res
@@ -31,14 +31,13 @@ router.post("/register", async (req, res) => {
       return res
         .status(400)
         .json({ msg: "An account with this email already exists" });
-    if (!displayName) displayName = email;
-    console.log(displayName);
+    if (!phoneNumber) phoneNumber = null;
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
     const newUser = new User({
       email,
       password: passwordHash,
-      displayName,
+      deviceId,
     });
     const saveUser = await newUser.save();
     res.json(saveUser);
@@ -49,12 +48,15 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    let { email, password } = req.body;
+    let { email, password, deviceId } = req.body;
 
     if (!email || !password)
-      return res.status(400).json({ msg: "not all field have been entered" });
+      return res.status(400).json({ msg: "Not all field have been entered" });
+    if (!deviceId) deviceId = email;
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({
+      $or: [{ email: email }, { deviceId: deviceId }],
+    });
 
     if (!user)
       return res
@@ -70,7 +72,7 @@ router.post("/login", async (req, res) => {
       token,
       user: {
         id: user._id,
-        displayName: user.displayName,
+        deviceId: user.deviceId,
         //email: user.email,
       },
     });
@@ -98,33 +100,11 @@ router.get("/users", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json(user);
 });
-//const User = require('../models/userModel')
-
-//router.post('/api/token', async (req, res) => {
-//	const user = new User(req.body)
-//	try {
-//		const token = await user.generateAuthToken()
-//		res.send({ token })
-//		console.log(token)
-
-//		return token
-
-//	} catch (error) {
-//		throw error
-//	}
-
-//})
 
 //routes
 router.get("/api", (req, res) => {
-  //const data = {
-  //	name: "Habib",
-  //	age: 20
-  //}
-
   Activity.find({})
     .then((data) => {
-      console.log("data", data);
       res.json(data);
     })
     .catch((error) => {
