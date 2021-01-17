@@ -43,14 +43,23 @@ function Nabar() {
                 <Link className="nav-item nav-link" to={"/dashboard"}>
                   Activity
                 </Link>
-                <Link className="nav-item nav-link" to={""} onClick={logout}>
+                <Link
+                  className="nav-item nav-link"
+                  to={"/home"}
+                  onClick={logout}
+                >
                   Logout
                 </Link>
               </>
             ) : (
-              <Link className="nav-link" to={"/home"}>
-                Home
-              </Link>
+              <>
+                <Link className="nav-link" to={"/home"}>
+                  Home
+                </Link>
+                <Link className="nav-link" to={"/log-in"}>
+                  Login
+                </Link>
+              </>
             )}
           </div>
         </div>

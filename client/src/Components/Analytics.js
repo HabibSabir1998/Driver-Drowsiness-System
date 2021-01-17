@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import style from "./style.module.css";
-import { Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -60,55 +60,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const months = localStorage.getItem("months");
-const TotalDis = localStorage.getItem("filterDis");
-const TotalDrowsy = localStorage.getItem("filterDrowsy");
-const TotalMob = localStorage.getItem("filterMob");
-const graphDataTotal = localStorage.getItem("graphData");
-
-const graphData = JSON.parse(graphDataTotal);
-
-const data = {
-  labels: JSON.parse(months),
-  datasets: [
-    {
-      label: "Drowsy",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: "#86b1eefa",
-      borderColor: "#86b1eefa",
-      pointBorderColor: "#86b1eefa",
-      pointBackgroundColor: "#fff",
-      data: graphData && graphData.map((val) => val.Drowsy),
-    },
-    {
-      label: "Distraction",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: "#6f5de5bd",
-      borderColor: "#6f5de5bd",
-      pointBorderColor: "#6f5de6cd",
-      pointBackgroundColor: "#fff",
-      data: graphData && graphData.map((val) => val.Distraction),
-    },
-    {
-      label: "Mobile Phone",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: "#7ac57ae8",
-      borderColor: "#7ac57ae8",
-      pointBorderColor: "#7ac57ae8",
-      pointBackgroundColor: "#fff",
-      data: graphData && graphData.map((val) => val.MobileUsage),
-    },
-  ],
-};
-
 function Analytics() {
   const classes = useStyles();
   const { userData } = useContext(UserContext);
   const [activity, setActivity] = useState([]);
   const [graphData, setgraphData] = useState([]);
+
   const history = useHistory();
 
   const getActivity = () => {
@@ -129,6 +86,8 @@ function Analytics() {
           };
         });
         setActivity(activity);
+        localStorage.setItem("activity", JSON.stringify(activity));
+
         console.log("fetchedData", activity);
       })
       .catch(() => {
@@ -156,6 +115,11 @@ function Analytics() {
   localStorage.setItem("filterDis", JSON.stringify(filterDis.length));
   localStorage.setItem("filterMob", JSON.stringify(filterMob.length));
 
+  const TotalDis = localStorage.getItem("filterDis");
+  const TotalDrowsy = localStorage.getItem("filterDrowsy");
+  const TotalMob = localStorage.getItem("filterMob");
+  const graphDataTotal = localStorage.getItem("graphData");
+
   const filter = (date, arr) => arr.filter((img) => img.date === date);
 
   const AllData = months.map((v, i) => {
@@ -169,6 +133,43 @@ function Analytics() {
   useEffect(() => {
     if (!userData.user) history.push("/log-in");
   }, [userData]);
+
+  const data = {
+    labels: months,
+    datasets: [
+      {
+        label: "Drowsy",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#86b1eefa",
+        borderColor: "#86b1eefa",
+        pointBorderColor: "#86b1eefa",
+        pointBackgroundColor: "#fff",
+        data: graphData && graphData.map((val) => val.Drowsy),
+      },
+      {
+        label: "Distraction",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#6f5de5bd",
+        borderColor: "#6f5de5bd",
+        pointBorderColor: "#6f5de6cd",
+        pointBackgroundColor: "#fff",
+        data: graphData && graphData.map((val) => val.Distraction),
+      },
+      {
+        label: "Mobile Phone",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "#7ac57ae8",
+        borderColor: "#7ac57ae8",
+        pointBorderColor: "#7ac57ae8",
+        pointBackgroundColor: "#fff",
+        data: graphData && graphData.map((val) => val.MobileUsage),
+      },
+    ],
+  };
+
   return (
     <div className={style.main}>
       <div className={classes.root}>
@@ -197,7 +198,6 @@ function Analytics() {
       </div>
       <hr />
       <div className={classes.graph}>
-        {/*<h2 className={classes.heading}>Graph</h2>*/}
         <Bar data={data} />
       </div>
     </div>

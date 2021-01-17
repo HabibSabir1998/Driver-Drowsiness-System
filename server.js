@@ -14,7 +14,6 @@ const mongoURL = "mongodb+srv://DAS:das123@clusterfyp.bymln.mongodb.net/DAS_DB";
 
 mongoose.connect(
   mongoURL || "mongodb://localhost:27017/DriverAssitenceSystem",
-  //  "mongodb+srv://DAS:das123@clusterfyp.bymln.mongodb.net/DriverAssitenceSystem",
 
   {
     useNewUrlParser: true,
@@ -30,5 +29,15 @@ mongoose.connection.on("connected", () => {
 //HTTP request logger
 app.use(morgan("tiny"));
 app.use("/", routes);
+
+// serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, console.log("Server starting at port", PORT));

@@ -9,7 +9,6 @@ import moment from "moment";
 
 function Card() {
   const [activity, setActivity] = useState([]);
-  const [graphData, setgraphData] = useState([]);
 
   const getActivity = () => {
     Axios.get("/api")

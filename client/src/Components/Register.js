@@ -1,13 +1,11 @@
 import Axios from "axios";
 import React, { useState, useContext } from "react";
-import UserLogint from "./Login";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 import ErrorNotice from "./ErrorNotice";
 
 function Register(props) {
-  //  const [deviceid, setDeviceId] = useState("vv-0213");
   const [deviceId, setDeviceId] = useState("vv-0213");
 
   const [email, setEmail] = useState("");
@@ -76,6 +74,7 @@ function Register(props) {
                     className="form-control"
                     placeholder="Device Id"
                     value={deviceId}
+                    onChange={(e) => setDeviceId(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -132,13 +131,7 @@ function Register(props) {
     );
   };
 
-  return (
-    <div>
-      {renderForm()}
-      {/*{!register && renderForm()}*/}
-      {/*{register && <UserLogint id={deviceid} password={password} />}*/}
-    </div>
-  );
+  return <div>{renderForm()}</div>;
 }
 
 export default Register;

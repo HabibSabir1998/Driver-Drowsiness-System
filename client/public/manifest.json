@@ -3,7 +3,7 @@
 	"background_color": "#ffffff",
 	"display": "standalone",
 	"scope": "/",
-	"start_url": ".",
+	"start_url": "/?utm_source=homescreen",
 	"name": "Driver Assistance System",
 	"short_name": "DAS",
 	"icons": [
