@@ -72,14 +72,14 @@ function Card() {
                     <span>Date And Time: {val.date_time}</span>
                     {!!val.location && (
                       <span>
-                        Location:{val.location[0]}, {val.location[1]}
-                        <small> | </small>
+                        Location: {val.location[0]}, {val.location[1]}
+                        {/*<small> | </small>
                         <a
                           target="_blank"
                           href={`http://www.google.com/maps/place/${val.location[2]},${val.location[3]}`}
                         >
                           map
-                        </a>
+                        </a>*/}
                       </span>
                     )}
                   </div>

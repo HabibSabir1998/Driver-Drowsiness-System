@@ -68,7 +68,7 @@ self.addEventListener("fetch", function (event) {
 //        "/static/js/bundle.js",
 //        "/index.html",
 //        "/",
-//        "/dashboard",
+//        "/activity",
 //      ]);
 //    })
 //  );

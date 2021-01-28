@@ -40,7 +40,7 @@ function Nabar() {
                 <Link className="nav-item nav-link" to={"/analytics"}>
                   Analytics
                 </Link>
-                <Link className="nav-item nav-link" to={"/dashboard"}>
+                <Link className="nav-item nav-link" to={"/activity"}>
                   Activity
                 </Link>
                 <Link
