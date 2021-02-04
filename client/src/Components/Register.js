@@ -116,7 +116,7 @@ function Register(props) {
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="Re-EnterPassword"
+                    placeholder="Confirm Password"
                     value={passwordCheck}
                     onChange={(e) => setPasswordCheck(e.target.value)}
                   />
