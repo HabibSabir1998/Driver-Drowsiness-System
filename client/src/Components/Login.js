@@ -38,7 +38,7 @@ function Login(props) {
       <div className="sidenav">
         <div className="login-main-text">
           <h2>
-            Driver Assistence System
+            Driver Assistance System
             <br /> Login Here!
           </h2>
           <p className="subtext">Fill the login form and enjoy our service</p>

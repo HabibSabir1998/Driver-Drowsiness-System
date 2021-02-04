@@ -49,7 +49,7 @@ function Register(props) {
         <div className="sidenav">
           <div className="login-main-text">
             <h2>
-              Driver Assistence System
+              Driver Assistance System
               <br /> Register Here!
             </h2>
             <p className="subtext">
