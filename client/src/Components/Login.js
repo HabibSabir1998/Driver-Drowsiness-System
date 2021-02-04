@@ -1,13 +1,11 @@
 import React, { useState, useContext } from "react";
 import "./Login.css";
-import register from "../img/carman.svg";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ErrorNotice from "./ErrorNotice";
 import Axios from "axios";
 import UserContext from "../Context/UserContext";
 
 function Login(props) {
-  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState();
@@ -44,7 +42,6 @@ function Login(props) {
             <br /> Login Here!
           </h2>
           <p className="subtext">Fill the login form and enjoy our service</p>
-          {/* <img src={register} style={{ width: "50%" }} /> */}
         </div>
       </div>
       <div className="main">
@@ -81,6 +78,10 @@ function Login(props) {
               <button type="submit" className="btn btn-blue">
                 Login
               </button>
+              <p>
+                Don't have a account?
+                <Link to={"/"}> Register Now</Link>
+              </p>
             </form>
           </div>
         </div>

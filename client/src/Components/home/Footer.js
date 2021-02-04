@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../images/DAS.png";
+import logo from "../../images/logo.png";
 
 export const Footer = () => {
   return (
@@ -17,14 +17,12 @@ export const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col">
-              <a href="#">
-                <img
-                  width="200px"
-                  src={logo}
-                  className="d-inline-block align-top footer-logo"
-                  alt="hurryapp"
-                />
-              </a>
+              <img
+                width="200px"
+                src={logo}
+                className="d-inline-block align-top footer-logo"
+                alt="hurryapp"
+              />
             </div>
           </div>
 
@@ -33,20 +31,6 @@ export const Footer = () => {
               <p className="footer-content">
                 {new Date().getFullYear()} DAS. All Rights Reserverd.
               </p>
-            </div>
-            <div className="col-sm">
-              <a href="#">
-                <p className="footer-content">Contact us</p>
-              </a>
-            </div>
-            <div className="col-sm">
-              <p className="footer-content">About us</p>
-            </div>
-            <div className="col-sm">
-              <p className="footer-content">Privacy Policy</p>
-            </div>
-            <div className="col-sm">
-              <p className="footer-content">Terms & Conditions</p>
             </div>
           </div>
         </div>

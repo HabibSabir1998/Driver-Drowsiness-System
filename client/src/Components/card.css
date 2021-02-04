@@ -14,10 +14,7 @@
 .back_inner {
   display: block;
 }
-/*.img {
-  width: 200px;
-  height: 200px;
-}*/
+
 .card {
   cursor: pointer;
   width: 300px;
@@ -80,7 +77,6 @@
 
 .front_text,
 .subtext {
-  /*background-color: #ffffff;*/
   margin: 0;
   width: 278px;
   padding: 5px;
@@ -100,7 +96,6 @@
   margin-top: 90px;
   box-shadow: 2px 3px 11px -6px;
   border-radius: 10px;
-  /*border: 1px solid black;*/
 }
 .text {
   width: 280px;
@@ -173,7 +168,6 @@
 @media only screen and (max-width: 425px) {
   .front,
   .back {
-    /*max-width: 290px;*/
     display: inline-block;
   }
 

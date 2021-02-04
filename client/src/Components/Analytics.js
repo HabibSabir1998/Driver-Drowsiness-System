@@ -105,9 +105,9 @@ function Analytics() {
 
   graphData.length &&
     localStorage.setItem("graphData", JSON.stringify(graphData));
-  let filterDrowsy = activity.filter((val) => val.un_act == "Drowsy");
-  let filterDis = activity.filter((val) => val.un_act == "Distraction");
-  let filterMob = activity.filter((val) => val.un_act == "Mobile Usage");
+  let filterDrowsy = activity.filter((val) => val.un_act === "Drowsy");
+  let filterDis = activity.filter((val) => val.un_act === "Distraction");
+  let filterMob = activity.filter((val) => val.un_act === "Mobile Usage");
 
   const months = [...new Set(activity.map((q) => q.date))];
   localStorage.setItem("months", JSON.stringify(months));
@@ -118,7 +118,6 @@ function Analytics() {
   const TotalDis = localStorage.getItem("filterDis");
   const TotalDrowsy = localStorage.getItem("filterDrowsy");
   const TotalMob = localStorage.getItem("filterMob");
-  const graphDataTotal = localStorage.getItem("graphData");
 
   const filter = (date, arr) => arr.filter((img) => img.date === date);
 

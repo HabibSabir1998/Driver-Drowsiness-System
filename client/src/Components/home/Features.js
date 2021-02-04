@@ -3,19 +3,14 @@ import vibration from "../../images/vibrationhome.png";
 import alert from "../../images/alerthome.png";
 import voicebot from "../../images/voicebothome.png";
 
-const Locations = () => {
+const Features = () => {
   return (
-    <div id="Locations" className="container text-center">
+    <div id="Features" className="container text-center">
       <br />
       <br />
       <br />
       <h1 className="section-heading mb-10">Features</h1>
       <div></div>
-      {/*<p className="section-p">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam
-      </p>*/}
 
       <div className="row">
         <div className="col-sm-4">
@@ -49,4 +44,4 @@ const Locations = () => {
   );
 };
 
-export default Locations;
+export default Features;

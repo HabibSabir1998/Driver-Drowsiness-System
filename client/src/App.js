@@ -1,9 +1,7 @@
-///* eslint-disable */
-
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Activity from "./Components/Activity";
 import Analytics from "./Components/Analytics";
@@ -11,7 +9,6 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Home from "./Components/Home";
 import Navbar from "./Components/Nabar";
-import applogo from "./images/NavbarLogo.png";
 import Axios from "axios";
 
 import UserContext from "./Context/UserContext";
@@ -56,7 +53,11 @@ function App() {
             <Route exact path="/" component={Register} />
             <Route path="/log-in" component={Login} />
             <Route path="/sign-up" component={Register} />
-            <Route path="/activity" component={Activity} />
+            <Route
+              path="/activity"
+              component={Activity}
+              authDetail={userData}
+            />
             <Route path="/analytics" component={Analytics} />
             <Route path="/home" component={Home} />
           </Switch>

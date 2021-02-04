@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./card.css";
-import drowsy from "../img/drowsy.png";
-import distructed from "../img/distructed.jpg";
-import mobilePhone from "../img/mobile-phone.png";
+import drowsy from "../images/drowsy.png";
+import distructed from "../images/distructed.png";
+import mobilePhone from "../images/mobile-phone.png";
 
 import Axios from "axios";
 import moment from "moment";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Card() {
   const [activity, setActivity] = useState([]);
@@ -24,22 +25,21 @@ function Card() {
             mood: val.mood,
             un_act: val.un_act,
             alert:
-              val.un_act == "Drowsy"
+              val.un_act === "Drowsy"
                 ? drowsy
-                : val.un_act == "Distraction"
+                : val.un_act === "Distraction"
                 ? distructed
                 : mobilePhone,
             desc:
-              val.un_act == "Drowsy"
+              val.un_act === "Drowsy"
                 ? "This activity is occurred because the driver was closed the eyes."
-                : val.un_act == "Distraction"
+                : val.un_act === "Distraction"
                 ? "This activity is occurred because the driver was not focused on the road."
                 : "This activity is occurred because the driver was used the mobile phone.",
             date: moment(val.date_time).format("MMM"),
           };
         });
         setActivity(activity);
-        //console.log("fetchedData", activity);
         localStorage.setItem("activity", JSON.stringify(activity));
       })
       .catch(() => {
@@ -53,8 +53,8 @@ function Card() {
 
   return (
     <div className="card_outer">
-      {!!activity.length &&
-        activity.map((val, ind) => {
+      {!!activity.length ? (
+        activity.reverse().map((val, ind) => {
           return (
             <div key={ind} className="cardmain">
               <div className="front">
@@ -67,19 +67,23 @@ function Card() {
               <div className="back">
                 <div className="back-content middle">
                   <div className="sm">
-                    <span>Mood: {val.mood}</span>
-                    <span>Age: {val.age}</span>
-                    <span>Date And Time: {val.date_time}</span>
+                    <span>
+                      Mood:
+                      <br />
+                      {val.mood}
+                    </span>
+                    <span>
+                      Age: <br />
+                      {val.age}
+                    </span>
+                    <span>
+                      Date And Time:
+                      <br /> {val.date_time}
+                    </span>
                     {!!val.location && (
                       <span>
-                        Location: {val.location[0]}, {val.location[1]}
-                        {/*<small> | </small>
-                        <a
-                          target="_blank"
-                          href={`http://www.google.com/maps/place/${val.location[2]},${val.location[3]}`}
-                        >
-                          map
-                        </a>*/}
+                        Location:
+                        <br /> {val.location[0]}, {val.location[1]}
                       </span>
                     )}
                   </div>
@@ -87,7 +91,16 @@ function Card() {
               </div>
             </div>
           );
-        })}
+        })
+      ) : (
+        <CircularProgress
+          style={{
+            marginTop: "20%",
+            display: "inline-block",
+            position: "relative",
+          }}
+        />
+      )}
     </div>
   );
 }

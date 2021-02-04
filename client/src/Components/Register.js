@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useState, useContext } from "react";
 import "./Login.css";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 import ErrorNotice from "./ErrorNotice";
 
@@ -75,6 +75,7 @@ function Register(props) {
                     placeholder="Device Id"
                     value={deviceId}
                     onChange={(e) => setDeviceId(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className="form-group">
@@ -115,7 +116,7 @@ function Register(props) {
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="Password"
+                    placeholder="Re-EnterPassword"
                     value={passwordCheck}
                     onChange={(e) => setPasswordCheck(e.target.value)}
                   />
@@ -123,6 +124,10 @@ function Register(props) {
                 <button type="submit" className="btn btn-blue">
                   Register
                 </button>
+                <p>
+                  Are you already register?
+                  <Link to={"/log-in"}> Login Here </Link>
+                </p>
               </form>
             </div>
           </div>

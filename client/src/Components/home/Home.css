@@ -132,8 +132,6 @@ html {
 
 /* Try Hurry App */
 .try-app {
-  /* background: url("../images/try-bg-logo-mark.png") no-repeat,
-	  linear-gradient(134deg, #179dc6 0%, #0c79a8 100%); */
   background-image: linear-gradient(134deg, #1e87f0 0%, #0c79a8 100%);
   height: auto;
   background-position: right; /* Center the image */

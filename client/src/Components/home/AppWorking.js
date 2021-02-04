@@ -1,6 +1,6 @@
 import React from "react";
 
-import carlove from "../../img/carlove.svg";
+import carlove from "../../images/carlove.svg";
 
 const AppWorking = () => {
   return (

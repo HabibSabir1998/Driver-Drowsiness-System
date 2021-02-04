@@ -1,37 +1,21 @@
 import React, { useRef } from "react";
 import arrow from "../../images/header-arrow.svg";
-import carman from "../../img/carman.svg";
+import carman from "../../images/carman.svg";
 import useWebAnimations, { zoomIn } from "@wellyshen/use-web-animations";
 
 const Jumbotron = () => {
   const jumboTextRef = useRef(null);
 
-  const jumboTextAnim = useWebAnimations({
+  useWebAnimations({
     ref: jumboTextRef,
     ...zoomIn,
   });
-
-  //  const { ref, playState, animate } = useWebAnimations({
-  //    keyframes: [
-  //      { transform: "translateY(0)" },
-  //      { transform: "translateY(10%)" },
-  //    ],
-  //    timing: {
-  //      direction: "alternate",
-  //      easing: "ease-in-out",
-  //      duration: 2000,
-  //      playbackRate: 1,
-  //      iterations: Infinity,
-  //    },
-  //  });
 
   return (
     <div>
       {/* <!--Jumbotron--> */}
       <div className="jumbotron jumbotron-fluid gradient-bg">
         <div className="container">
-          {/* <br></br>
-                    <br></br> */}
           <div className="row">
             <div ref={jumboTextRef} className="col my-auto">
               <br></br>
@@ -63,7 +47,6 @@ const Jumbotron = () => {
                 className="jumbotron-mobile vert-move"
                 src={carman}
                 alt="phone"
-                //ref={ref}
               />
             </div>
           </div>

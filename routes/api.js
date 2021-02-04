@@ -26,11 +26,13 @@ router.post("/register", async (req, res) => {
       return res
         .status(400)
         .json({ msg: "Enter the same password twice for verification" });
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await User.findOne({
+      deviceId: deviceId,
+    });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists" });
+        .json({ msg: "An account with this DeviceId already exists" });
     if (!phoneNumber) phoneNumber = null;
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -73,7 +75,6 @@ router.post("/login", async (req, res) => {
       user: {
         id: user._id,
         deviceId: user.deviceId,
-        //email: user.email,
       },
     });
   } catch (err) {

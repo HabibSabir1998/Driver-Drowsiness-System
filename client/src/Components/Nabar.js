@@ -16,7 +16,6 @@ function Nabar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div className="container">
         <Link className="navbar-brand" to={"/log-in"}>
-          {/*<img src={applogo} width= "120px" height="50px"/>*/}
           Driver Assistance System
         </Link>
         <button
