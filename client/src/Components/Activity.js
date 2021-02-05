@@ -58,7 +58,7 @@ function Card() {
           return (
             <div key={ind} className="cardmain">
               <div className="front">
-                <img className="img" src={val.alert} alt="#" />
+                <img className="img" src={val.alert} alt="alert image" />
                 <div className="text">
                   <h1 className="front_text">{val.un_act}</h1>
                   <p className="subtext">{val.desc}</p>
@@ -68,21 +68,21 @@ function Card() {
                 <div className="back-content middle">
                   <div className="sm">
                     <span>
-                      Mood:
+                      <strong>Mood:</strong>
                       <br />
                       {val.mood}
                     </span>
                     <span>
-                      Age: <br />
+                      <strong>Age:</strong> <br />
                       {val.age}
                     </span>
                     <span>
-                      Date And Time:
+                      <strong>Date And Time:</strong>
                       <br /> {val.date_time}
                     </span>
                     {!!val.location && (
                       <span>
-                        Location:
+                        <strong>Location:</strong>
                         <br /> {val.location[0]}, {val.location[1]}
                       </span>
                     )}
