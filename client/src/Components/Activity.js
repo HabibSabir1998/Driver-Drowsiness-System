@@ -39,10 +39,13 @@ function Card() {
         });
         setActivity(activity.reverse());
 
-        localStorage.setItem("activity", JSON.stringify(activity.reverse()));
+        localStorage.setItem(
+          "activityCard",
+          JSON.stringify(activity.reverse())
+        );
       })
       .catch(() => {
-        const localActivity = JSON.parse(localStorage.getItem("activity"));
+        const localActivity = JSON.parse(localStorage.getItem("activityCard"));
         setActivity(localActivity);
       });
   };
