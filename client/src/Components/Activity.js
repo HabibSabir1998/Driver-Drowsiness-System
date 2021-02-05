@@ -37,15 +37,12 @@ function Card() {
                 : "This activity is occurred because the driver was used the mobile phone.",
           };
         });
-        setActivity(activity.reverse());
+        setActivity(activity);
 
-        localStorage.setItem(
-          "activityCard",
-          JSON.stringify(activity.reverse())
-        );
+        localStorage.setItem("activity", JSON.stringify(activity));
       })
       .catch(() => {
-        const localActivity = JSON.parse(localStorage.getItem("activityCard"));
+        const localActivity = JSON.parse(localStorage.getItem("activity"));
         setActivity(localActivity);
       });
   };
@@ -55,44 +52,47 @@ function Card() {
   return (
     <div className="card_outer">
       {!!activity.length ? (
-        activity.map((val, ind) => {
-          return (
-            <div key={ind} className="cardmain">
-              <div className="front">
-                <img className="img" src={val.alert} alt="alert" />
-                <div className="text">
-                  <h1 className="front_text">{val.un_act}</h1>
-                  <p className="subtext">{val.desc}</p>
+        activity
+          .slice()
+          .reverse()
+          .map((val, ind) => {
+            return (
+              <div key={ind} className="cardmain">
+                <div className="front">
+                  <img className="img" src={val.alert} alt="alert" />
+                  <div className="text">
+                    <h1 className="front_text">{val.un_act}</h1>
+                    <p className="subtext">{val.desc}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="back">
-                <div className="back-content middle">
-                  <div className="sm">
-                    <span>
-                      <strong>Mood:</strong>
-                      <br />
-                      {val.mood}
-                    </span>
-                    <span>
-                      <strong>Age:</strong> <br />
-                      {val.age}
-                    </span>
-                    <span>
-                      <strong>Date And Time:</strong>
-                      <br /> {val.date_time}
-                    </span>
-                    {!!val.location && (
+                <div className="back">
+                  <div className="back-content middle">
+                    <div className="sm">
                       <span>
-                        <strong>Location:</strong>
-                        <br /> {val.location[0]}, {val.location[1]}
+                        <strong>Mood:</strong>
+                        <br />
+                        {val.mood}
                       </span>
-                    )}
+                      <span>
+                        <strong>Age:</strong> <br />
+                        {val.age}
+                      </span>
+                      <span>
+                        <strong>Date And Time:</strong>
+                        <br /> {val.date_time}
+                      </span>
+                      {!!val.location && (
+                        <span>
+                          <strong>Location:</strong>
+                          <br /> {val.location[0]}, {val.location[1]}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })
+            );
+          })
       ) : (
         <CircularProgress
           style={{
