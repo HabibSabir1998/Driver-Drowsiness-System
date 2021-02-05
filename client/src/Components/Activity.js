@@ -5,7 +5,6 @@ import distructed from "../images/distructed.png";
 import mobilePhone from "../images/mobile-phone.png";
 
 import Axios from "axios";
-import moment from "moment";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Card() {
@@ -36,7 +35,6 @@ function Card() {
                 : val.un_act === "Distraction"
                 ? "This activity is occurred because the driver was not focused on the road."
                 : "This activity is occurred because the driver was used the mobile phone.",
-            date: moment(val.date_time).format("MMM"),
           };
         });
         setActivity(activity.reverse());
@@ -58,7 +56,7 @@ function Card() {
           return (
             <div key={ind} className="cardmain">
               <div className="front">
-                <img className="img" src={val.alert} alt="alert image" />
+                <img className="img" src={val.alert} alt="alert" />
                 <div className="text">
                   <h1 className="front_text">{val.un_act}</h1>
                   <p className="subtext">{val.desc}</p>

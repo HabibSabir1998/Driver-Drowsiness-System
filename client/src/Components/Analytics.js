@@ -81,14 +81,11 @@ function Analytics() {
             location: val.location,
             mood: val.mood,
             un_act: val.un_act,
-
             date: moment(val.date_time).format("MMM"),
           };
         });
         setActivity(activity);
         localStorage.setItem("activity", JSON.stringify(activity));
-
-        console.log("fetchedData", activity);
       })
       .catch(() => {
         const localActivity = JSON.parse(localStorage.getItem("activity"));
