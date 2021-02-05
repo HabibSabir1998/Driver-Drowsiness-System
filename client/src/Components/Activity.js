@@ -39,8 +39,9 @@ function Card() {
             date: moment(val.date_time).format("MMM"),
           };
         });
-        setActivity(activity);
-        localStorage.setItem("activity", JSON.stringify(activity));
+        setActivity(activity.reverse());
+
+        localStorage.setItem("activity", JSON.stringify(activity.reverse()));
       })
       .catch(() => {
         const localActivity = JSON.parse(localStorage.getItem("activity"));
@@ -50,11 +51,10 @@ function Card() {
   useEffect(() => {
     getActivity();
   }, []);
-
   return (
     <div className="card_outer">
       {!!activity.length ? (
-        activity.reverse().map((val, ind) => {
+        activity.map((val, ind) => {
           return (
             <div key={ind} className="cardmain">
               <div className="front">
